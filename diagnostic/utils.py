@@ -200,6 +200,9 @@ def compute_diagnostic(diagnostic):
 	print("symphtoms: %s"%symphtoms)
 	xsep = getProbabilidadDiagnostico(SINTOMA_X_ENFERMEDAD_PROBABILIDAD, symphtoms)
 	print("xsep: %s"%xsep)
+	# Delete previous diagnostic's sickness
+	diagnostic.sickness = None
+	diagnostic.save()
 	# Create DiagnosticMachine instance
 	dm = DiagnosticMachine()
 	# Set initial facts by passing xsep
@@ -208,8 +211,8 @@ def compute_diagnostic(diagnostic):
 	dm.diagnostic = diagnostic
 	# Execute expert system
 	dm.run()
-	print("dm.facts")
-	print(dm.facts)
+	#print("dm.facts")
+	#print(dm.facts)
 	return True
 
 def set_diagnostique(diagnostic, key):
